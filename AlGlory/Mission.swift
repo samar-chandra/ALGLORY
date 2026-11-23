@@ -39,9 +39,9 @@ class Mission {
 }
 
 enum CompletionStatus: String, Codable {
-    case attempted
+    case notStarted
+    case inProgress
     case completed
-    case notAttempted
 }
 
 enum Difficulty: String, Codable {
