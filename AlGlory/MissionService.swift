@@ -15,7 +15,8 @@ final class MissionService {
             .getDocuments()
         var missions: [String: MissionFB] = [:]
         for document in snapshot.documents {
-            missions[document.documentID] = MissionFB(title: document["title"] as? String, details: <#T##String#>, difficulty: <#T##String#>, questionIDs: <#T##[String]#>, createdAt: <#T##Date#>, updatedAt: <#T##Date#>, learningObjectives: <#T##[String]#>, schemaVersion: <#T##Int#>, isActive: <#T##Bool#>)
+            let mission = try document.data(as: MissionFB.self)
+            dump(mission)
         }
     }
 }
