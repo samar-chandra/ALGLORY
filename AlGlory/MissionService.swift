@@ -9,14 +9,15 @@ import Foundation
 import FirebaseFirestore
 
 final class MissionService {
-    func fetchMissions() async throws {
+    func fetchMissions() async throws -> [MissionFB]{
         let snapshot = try await Firestore.firestore()
             .collection("missions")
             .getDocuments()
-        var missions: [String: MissionFB] = [:]
+        var missions: [MissionFB] = []
         for document in snapshot.documents {
             let mission = try document.data(as: MissionFB.self)
-            dump(mission)
+            missions.append(mission)
         }
+        return missions
     }
 }
