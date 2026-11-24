@@ -35,7 +35,7 @@ struct AlGloryApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(missionService: MissionService())
         }
         .modelContainer(sharedModelContainer)
         
