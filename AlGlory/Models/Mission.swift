@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 class Mission {
+    var schemaVersion:Int
     var id: UUID
     var title: String
     var details: String
@@ -26,7 +27,8 @@ class Mission {
         }
     }
     
-    init(id: UUID, title: String, details: String, completionStatus: CompletionStatus, createdAt: Date, updatedAt: Date, difficulty: Difficulty) {
+    init(schemaVersion: Int, id: UUID, title: String, details: String, completionStatus: CompletionStatus, createdAt: Date, updatedAt: Date, difficulty: Difficulty) {
+        self.schemaVersion = schemaVersion
         self.id = id
         self.title = title
         self.details = details
