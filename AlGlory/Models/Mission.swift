@@ -18,6 +18,7 @@ class Mission {
     var createdAt: Date
     var updatedAt: Date
     var difficulty: Difficulty
+    var questionIDs: [String]
     
     var xpReward: Int {
         switch difficulty {
@@ -27,7 +28,7 @@ class Mission {
         }
     }
     
-    init(schemaVersion: Int, id: UUID, title: String, details: String, completionStatus: CompletionStatus, createdAt: Date, updatedAt: Date, difficulty: Difficulty) {
+    init(schemaVersion: Int, id: UUID, title: String, details: String, completionStatus: CompletionStatus, createdAt: Date, updatedAt: Date, difficulty: Difficulty, questionIds: [String]) {
         self.schemaVersion = schemaVersion
         self.id = id
         self.title = title
@@ -36,6 +37,7 @@ class Mission {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.difficulty = difficulty
+        self.questionIDs = questionIds
     }
     
 }

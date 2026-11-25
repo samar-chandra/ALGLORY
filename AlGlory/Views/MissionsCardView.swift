@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhosphorSwift
 
 struct MissionsCardView: View {
     var mission: Mission
@@ -29,13 +30,16 @@ struct MissionsCardView: View {
                         Text(mission.title)
                             .font(.title)
                             .bold()
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
                         Text(mission.details)
                             .font(.body)
                     }
-                    Image(systemName: "chevron.left.forwardslash.chevron.right")
+                    Image("missionImage")
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 100, height: 100)
                 }
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))
@@ -55,17 +59,9 @@ struct MissionsCardView: View {
                         Text("50 XP")
                             .font(.footnote)
                     }
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(width: 1, height: 15)
-                    HStack {
-                        Image.init(systemName: "app.grid")
-                        Text("Arrays")
-                            .font(.footnote)
-                    }
                     Spacer()
-                    Button {
-                        print("Mission Started")
+                    NavigationLink {
+                        QuestionsView(questionTags: mission.questionIDs)
                     } label: {
                         HStack(alignment: .center) {
                             Image.init(systemName: "play.fill")
@@ -91,7 +87,7 @@ struct MissionsCardView: View {
                 RoundedRectangle(cornerRadius: 24)
                     .fill(Color.white)
                     .shadow(
-                        color: getColor(difficulty: mission.difficulty).opacity(0.12),
+                        color: .black.opacity(0.12),
                                 radius: 12,
                                 x: 0,
                                 y: 6
@@ -114,5 +110,5 @@ struct MissionsCardView: View {
 }
 
 #Preview {
-    MissionsCardView(mission: Mission(schemaVersion: 1, id: UUID(), title: "Two Sum", details: "Find two numbers in an array that add up to a target.", completionStatus: .notStarted, createdAt: Date(), updatedAt: Date(), difficulty: .easy))
+    MissionsCardView(mission: Mission(schemaVersion: 1, id: UUID(), title: "Two Sum", details: "Find two numbers in an array that add up to a target.", completionStatus: .notStarted, createdAt: Date(), updatedAt: Date(), difficulty: .easy, questionIds: ["1"]))
 }

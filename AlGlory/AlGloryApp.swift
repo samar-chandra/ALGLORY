@@ -13,7 +13,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
-
     return true
   }
 }
@@ -23,7 +22,8 @@ struct AlGloryApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Mission.self
+            Mission.self,
+            Question.self
         ])
         do {
             let container = try ModelContainer(for: schema)
@@ -35,7 +35,7 @@ struct AlGloryApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(missionService: MissionService())
+            ContentView(missionService: MissionService(), questionService: QuestionService())
         }
         .modelContainer(sharedModelContainer)
         
